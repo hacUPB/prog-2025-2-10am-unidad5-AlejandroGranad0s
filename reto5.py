@@ -297,8 +297,66 @@ while control == True:
                                             if i >= 15:
                                                 break
                                             print(fila)
-                                case "3":
+                                case "3": # todos los caso 3 "estadisticas" fuero ayudadas con ia
                                     print("estadisticas")
+                                    ubicacion = "C:\\Users\\ANDRES GRANADOS\\Documents\\Mist2025\\5\\archivoscsv\\"
+                                    nombre = "Aviación_Comercial_2020.csv"
+                                    modo = "r"
+                                    columna = int(input("Número de columna (empezando en 0): "))
+                                    datos = []
+                                    with open(ubicacion+nombre, modo, encoding="utf-8") as f:
+                                        lector = csv.reader(f)
+                                        contador = 0
+                                        for fila in lector:
+                                            if contador != 0:  # para saltar el encabezado sin usar next()
+                                                if fila[columna] != "":
+                                                    valor = float(fila[columna].replace(",","."))
+                                                    datos.append(valor)
+                                            contador += 1
+
+                                        if len(datos) == 0:
+                                            print("No hay datos numéricos en esa columna.")
+                                            break
+
+                                        # Calcular cantidad
+                                        cantidad = len(datos)
+
+                                        # Calcular promedio
+                                        suma = 0
+                                        for x in datos:
+                                            suma = suma + x
+                                        promedio = suma / cantidad
+
+                                        # Ordenar manualmente (burbuja simple)
+                                        for i in range(cantidad - 1):
+                                            for j in range(cantidad - 1 - i):
+                                                if datos[j] > datos[j + 1]:
+                                                    temp = datos[j]
+                                                    datos[j] = datos[j + 1]
+                                                    datos[j + 1] = temp
+
+                                        # Calcular mediana
+                                        if cantidad % 2 == 0:
+                                            mediana = (datos[cantidad//2 - 1] + datos[cantidad//2]) / 2
+                                        else:
+                                            mediana = datos[cantidad//2]
+
+                                        # Calcular desviación estándar
+                                        suma_desv = 0
+                                        for x in datos:
+                                            suma_desv = suma_desv + (x - promedio)**2
+                                        desv = (suma_desv / cantidad)**0.5
+
+                                        # Calcular máximo y mínimo
+                                        maximo = datos[-1]
+                                        minimo = datos[0]
+
+                                        print("Cantidad:", cantidad)
+                                        print("Promedio:", promedio)
+                                        print("Mediana:", mediana)
+                                        print("Desviación estándar:", desv)
+                                        print("Máximo:", maximo)
+                                        print("Mínimo:", minimo)
                                 case "4":
                                     print("graficas")
                                     colu = int(input("numero de columnas: "))
@@ -359,17 +417,17 @@ while control == True:
                                 case "3":
                                     print("estadisticas")
                                     ubicacion = "C:\\Users\\ANDRES GRANADOS\\Documents\\Mist2025\\5\\archivoscsv\\"
-                                    nombre = "Entrada_AIM_2020.csv"
+                                    nombre = "AEROLINEA_SATENA.csv"
                                     modo = "r"
                                     columna = int(input("Número de columna (empezando en 0): "))
                                     datos = []
                                     with open(ubicacion+nombre, modo, encoding="utf-8") as f:
-                                        lector = csv.reader(f, delimiter=";")
+                                        lector = csv.reader(f)
                                         contador = 0
                                         for fila in lector:
                                             if contador != 0:  # para saltar el encabezado sin usar next()
                                                 if fila[columna] != "":
-                                                    valor = float(fila[columna])
+                                                    valor = float(fila[columna].replace(",","."))
                                                     datos.append(valor)
                                             contador += 1
 
@@ -418,9 +476,12 @@ while control == True:
                                         print("Mínimo:", minimo)
                                 case "4":
                                     print("graficas")
+                                    ubicacion = "C:\\Users\\ANDRES GRANADOS\\Documents\\Mist2025\\5\\archivoscsv\\"
+                                    nombre = "AEROLINEA_SATENA.csv"
+                                    modo = "r"
                                     columna = int(input("Número de columna (empezando en 0): "))
                                     datos = []
-                                    with open(nombre_archivo, newline='', encoding="utf-8") as f:
+                                    with open(ubicacion+nombre, newline='', encoding="utf-8") as f:
                                         lector = csv.reader(f)
                                         next(lector)
                                         for fila in lector:
@@ -443,11 +504,6 @@ while control == True:
                                     plt.xlabel("Índice")
                                     plt.ylabel("Valor")
                                     plt.show()
-                                case "0":
-                                    print("Regresando")
-                                    break
-                                case _:
-                                    print("modo no valido")
                     case "3":
                         con3 = True
                         while con3 == True:
@@ -600,8 +656,94 @@ while control == True:
                                             print(fila)
                                 case "3":
                                     print("estadisticas")
+                                    ubicacion = "C:\\Users\\ANDRES GRANADOS\\Documents\\Mist2025\\5\\archivoscsv\\"
+                                    nombre = "Salidas_AIM_2020.csv"
+                                    modo = "r"
+                                    columna = int(input("Número de columna (empezando en 0): "))
+                                    datos = []
+                                    with open(ubicacion+nombre, modo, encoding="utf-8") as f:
+                                        lector = csv.reader(f)
+                                        contador = 0
+                                        for fila in lector:
+                                            if contador != 0:  # para saltar el encabezado sin usar next()
+                                                if fila[columna] != "":
+                                                    valor = float(fila[columna].replace(",","."))
+                                                    datos.append(valor)
+                                            contador += 1
+
+                                        if len(datos) == 0:
+                                            print("No hay datos numéricos en esa columna.")
+                                            break
+
+                                        # Calcular cantidad
+                                        cantidad = len(datos)
+
+                                        # Calcular promedio
+                                        suma = 0
+                                        for x in datos:
+                                            suma = suma + x
+                                        promedio = suma / cantidad
+
+                                        # Ordenar manualmente (burbuja simple)
+                                        for i in range(cantidad - 1):
+                                            for j in range(cantidad - 1 - i):
+                                                if datos[j] > datos[j + 1]:
+                                                    temp = datos[j]
+                                                    datos[j] = datos[j + 1]
+                                                    datos[j + 1] = temp
+
+                                        # Calcular mediana
+                                        if cantidad % 2 == 0:
+                                            mediana = (datos[cantidad//2 - 1] + datos[cantidad//2]) / 2
+                                        else:
+                                            mediana = datos[cantidad//2]
+
+                                        # Calcular desviación estándar
+                                        suma_desv = 0
+                                        for x in datos:
+                                            suma_desv = suma_desv + (x - promedio)**2
+                                        desv = (suma_desv / cantidad)**0.5
+
+                                        # Calcular máximo y mínimo
+                                        maximo = datos[-1]
+                                        minimo = datos[0]
+
+                                        print("Cantidad:", cantidad)
+                                        print("Promedio:", promedio)
+                                        print("Mediana:", mediana)
+                                        print("Desviación estándar:", desv)
+                                        print("Máximo:", maximo)
+                                        print("Mínimo:", minimo)
                                 case "4":
                                     print("graficas")
+                                    ubicacion = "C:\\Users\\ANDRES GRANADOS\\Documents\\Mist2025\\5\\archivoscsv\\"
+                                    nombre = "Salidad_AIM_2020.csv"
+                                    modo = "r"
+                                    columna = int(input("Número de columna (empezando en 0): "))
+                                    datos = []
+                                    with open(ubicacion+nombre, newline='', encoding="utf-8") as f:
+                                        lector = csv.reader(f)
+                                        next(lector)
+                                        for fila in lector:
+                                            try:
+                                                valor = float(fila[columna])
+                                                datos.append(valor)
+                                            except:
+                                                pass
+                                    if len(datos) == 0:
+                                        print("No hay datos numéricos en esa columna.")
+                                        break
+                                    plt.scatter(range(len(datos)), datos, color="red")
+                                    plt.title("Gráfica de dispersión")
+                                    plt.xlabel("Índice")
+                                    plt.ylabel("Valor")
+                                    plt.show()
+
+                                    plt.bar(range(len(datos[:10])), datos[:10], color="green")
+                                    plt.title("Gráfico de barras (primeros 10)")
+                                    plt.xlabel("Índice")
+                                    plt.ylabel("Valor")
+                                    plt.show()
                                 case "0":
                                     print("Regresando")
                                     break
